@@ -14,6 +14,43 @@ import Footer from '@/components/Footer';
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [showLoader, setShowLoader] = useState(true);
+  const [logoVisible, setLogoVisible] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+
+  // Trigger logo fade-in on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLogoVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle exiting sequence when loaded
+  useEffect(() => {
+    if (isLoaded) {
+      // 1. Logo fades out
+      const fadeOutTimer = setTimeout(() => {
+        setLogoVisible(false);
+      }, 200);
+
+      // 2. Preloader slides up
+      const slideUpTimer = setTimeout(() => {
+        setIsExiting(true);
+      }, 700);
+
+      // 3. Remove preloader from DOM
+      const removeTimer = setTimeout(() => {
+        setShowLoader(false);
+      }, 1900);
+
+      return () => {
+        clearTimeout(fadeOutTimer);
+        clearTimeout(slideUpTimer);
+        clearTimeout(removeTimer);
+      };
+    }
+  }, [isLoaded]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -249,30 +286,29 @@ export default function Home() {
   return (
     <main ref={containerRef} className="relative w-full bg-[#f9f9f7] text-[#1a1c1b]">
       {/* Preloader Overlay */}
-      {!isLoaded && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#06070B] px-4">
-          <div className="max-w-md w-full text-center space-y-6">
-            <div className="inline-flex items-center space-x-2 text-2xl font-bold tracking-widest text-[#ffffff] font-display">
-              <svg className="w-8 h-8 animate-pulse text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
-              <span>INSKY</span>
-            </div>
-
-            <div className="space-y-2">
-              <h2 className="text-xl font-medium text-slate-200">Loading Interactive Experience</h2>
-              <p className="text-sm text-slate-400">Preloading high-fidelity animation frames...</p>
-            </div>
-
-            {/* Progress bar */}
-            <div className="relative w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+      {showLoader && (
+        <div
+          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white transition-transform duration-[1200ms] ease-[cubic-bezier(0.85,0,0.15,1)] ${
+            isExiting ? '-translate-y-full' : 'translate-y-0'
+          }`}
+        >
+          <div className="flex flex-col items-center gap-8">
+            <h2
+              className={`font-headline-sm text-headline-sm tracking-[0.4em] text-primary transition-opacity duration-[1000ms] ease-in-out ${
+                logoVisible ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              INSKY
+            </h2>
+            <div className="w-48 overflow-hidden bg-black/5">
               <div
-                className="absolute top-0 left-0 h-full bg-white transition-all duration-100 ease-out"
+                className="h-[1px] bg-black transition-all duration-200 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <div className="text-right text-xs font-semibold text-white tracking-wider">
-              {progress}%
+            <div className="flex items-baseline gap-1">
+              <span className="font-label-caps text-[10px] tracking-widest text-[#444748]">{progress}</span>
+              <span className="font-label-caps text-[10px] tracking-widest text-[#444748]">%</span>
             </div>
           </div>
         </div>
