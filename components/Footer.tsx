@@ -33,10 +33,20 @@ export default function Footer() {
             INSKY
           </h2>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-on-surface-variant text-sm font-body-md">
-            <a className="hover:text-primary transition-colors underline decoration-[0.5px]" href="#">
+            <a
+              className="hover:text-primary transition-colors underline decoration-[0.5px]"
+              href="https://www.instagram.com/insky_co?igsh=YmVrM3p4Ymdtbmc="
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Instagram
             </a>
-            <a className="hover:text-primary transition-colors underline decoration-[0.5px]" href="#">
+            <a
+              className="hover:text-primary transition-colors underline decoration-[0.5px]"
+              href="https://wa.me/917862999106"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               WhatsApp
             </a>
             <a className="hover:text-primary transition-colors underline decoration-[0.5px]" href="#contact">

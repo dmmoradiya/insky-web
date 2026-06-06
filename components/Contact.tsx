@@ -11,23 +11,46 @@ export default function Contact() {
   });
   const [status, setStatus] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('Please fill in all required fields.');
       return;
     }
-    // Simulate API request
+    
     setStatus('Sending your inquiry...');
-    setTimeout(() => {
-      setStatus('Thank you! Your inquiry has been sent successfully.');
-      setFormData({
-        name: '',
-        email: '',
-        type: 'Product Inquiry',
-        message: '',
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/easchemiindustries@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          'inquiry-type': formData.type,
+          message: formData.message,
+          _subject: `INSKY Website Inquiry - ${formData.type} from ${formData.name}`,
+          _captcha: 'false',
+        }),
       });
-    }, 1000);
+
+      if (response.ok) {
+        setStatus('Thank you! Your inquiry has been sent successfully.');
+        setFormData({
+          name: '',
+          email: '',
+          type: 'Product Inquiry',
+          message: '',
+        });
+      } else {
+        setStatus('Failed to send inquiry. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending form:', error);
+      setStatus('Failed to send inquiry. Please try again.');
+    }
   };
 
   return (
@@ -57,7 +80,11 @@ export default function Contact() {
                 <p className="font-label-caps text-xs tracking-wider uppercase text-on-surface-variant font-semibold">
                   Email
                 </p>
-                <p className="font-body-md text-base text-primary mt-1">easchemiindustries@gmail.com</p>
+                <p className="font-body-md text-base text-primary mt-1">
+                  <a href="mailto:easchemiindustries@gmail.com" className="hover:underline transition-all">
+                    easchemiindustries@gmail.com
+                  </a>
+                </p>
               </div>
             </div>
             <div className="flex gap-4 items-start">

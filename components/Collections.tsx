@@ -221,11 +221,12 @@ export default function Collections() {
               {/* Action Button */}
               <div className="pt-4 md:pt-6">
                 <a
-                  href="#contact"
-                  onClick={handleCloseModal}
+                  href="https://www.amazon.in/s?k=INSKY&ref=bl_dp_s_web_0"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block text-center px-12 py-5 bg-primary text-white font-button text-button uppercase tracking-widest hover:opacity-90 transition-opacity w-full sm:w-auto"
                 >
-                  Contact to Order
+                  Order Now
                 </a>
               </div>
             </div>
