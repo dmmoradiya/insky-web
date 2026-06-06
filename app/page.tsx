@@ -33,12 +33,16 @@ export default function Home() {
     const totalFrames = 241;
     let count = 0;
 
+    // Detect if device is mobile on initial mount
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+    const folder = isMobile ? 'ezgif-12d5ca3f45ae1673-jpg' : 'ezgif-57c291c3170ce878-jpg';
+
     const preload = async () => {
       const promises = Array.from({ length: totalFrames }, (_, i) => {
         return new Promise<HTMLImageElement>((resolve) => {
           const img = new Image();
           const frameNum = String(i + 1).padStart(3, '0');
-          img.src = `/images/ezgif-57c291c3170ce878-jpg/ezgif-frame-${frameNum}.jpg`;
+          img.src = `/images/${folder}/ezgif-frame-${frameNum}.jpg`;
 
           img.onload = () => {
             if (isMounted) {
