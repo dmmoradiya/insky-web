@@ -36,7 +36,7 @@ export default function Collections() {
       title: 'Hydra Silk',
       subtitle: 'Pure Hydration, Silky Comfort',
       tagline: 'PURE HYDRATION, SILKY COMFORT',
-      description: 'Infused with Aloe Vera and inspired by refreshing aquatic notes, Hydra Silk helps wash away the stress of Monday, the pace of Tuesday, the buildup of Wednesday, the fatigue of Thursday, the long hours of Friday, and the memories of a busy Saturday. Every shower leaves your skin feeling clean, cool, and refreshed. With regular use, freshness becomes a part of your everyday routine.',
+      description: 'Infused with Aloe Vera and inspired by refreshing aquatic notes, Hydra Silk washes away weekly stress and environmental buildup. Every shower leaves your skin feeling clean, cool, and deeply revitalized, bringing premium freshness to your daily self-care routine.',
       image: '/images/collection/hydra.jpeg',
       particleColor: 'rgba(100, 200, 255, 0.4)', // light blue
       benefits: [
@@ -51,7 +51,7 @@ export default function Collections() {
       title: 'Berry Velvet',
       subtitle: 'Velvety Freshness, Every Day',
       tagline: 'VELVETY FRESHNESS, EVERY DAY',
-      description: 'Enriched with fruit extracts and skin-conditioning ingredients, Berry Velvet helps lift away the demands of everyday life—from busy schedules and long workdays to environmental buildup that accumulates throughout the week. It leaves your skin feeling soft, smooth, and refreshed, while promoting a naturally healthy-looking glow. With consistent use, your skin feels nourished, revitalized, and beautifully refreshed.',
+      description: 'Enriched with natural fruit extracts and skin-conditioning ingredients, Berry Velvet lifts away daily environmental buildup. It leaves your skin feeling soft, smooth, and refreshed, while restoring a natural, healthy-looking glow with every wash.',
       image: '/images/collection/berry.jpeg',
       particleColor: 'rgba(255, 100, 150, 0.4)', // berry pink
       benefits: [
@@ -66,7 +66,7 @@ export default function Collections() {
       title: 'Neem Clear',
       subtitle: "Powered by Nature's Care",
       tagline: "POWERED BY NATURE'S CARE",
-      description: 'Crafted with Multani Mitti, Kaolin Clay, Neem, Tulsi, Amla, and Aloe Vera, Neem Clear helps remove excess oil, surface impurities, and the effects of daily exposure to dust and pollution. The herbal blend leaves your skin feeling fresh, balanced, and revitalized. With regular use, your skin appears cleaner, smoother, and naturally refreshed.',
+      description: 'Crafted with Multani Mitti, Kaolin Clay, Neem, and Tulsi, Neem Clear removes excess oil, surface impurities, and daily pollution buildup. This herbal blend leaves your skin feeling fresh, balanced, and naturally clean.',
       image: '/images/collection/neem.jpeg',
       particleColor: 'rgba(150, 255, 150, 0.25)', // green herbal
       benefits: [
@@ -128,7 +128,7 @@ export default function Collections() {
                 })}
               </div>
             )}
-            
+
             <img
               alt={product.title}
               className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 relative z-0"
@@ -154,9 +154,8 @@ export default function Collections() {
       {/* Premium Product Modal */}
       {selectedProduct && (
         <div
-          className={`fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 transition-opacity duration-300 ${
-            isModalOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-          }`}
+          className={`fixed top-10 inset-0 z-[100] flex items-center justify-center p-4 md:p-10 transition-opacity duration-300 ${isModalOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            }`}
         >
           {/* Backdrop Overlay */}
           <div
@@ -166,9 +165,8 @@ export default function Collections() {
 
           {/* Modal Container */}
           <div
-            className={`relative bg-[#f9f9f7] w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col md:flex-row transition-all duration-500 ease-out z-10 ${
-              isModalOpen ? 'scale-100 translate-y-0 opacity-100' : 'scale-95 translate-y-8 opacity-0'
-            }`}
+            className={`relative bg-[#f9f9f7] w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col md:flex-row transition-all duration-500 ease-out z-10 ${isModalOpen ? 'scale-100 translate-y-0 opacity-100' : 'scale-95 translate-y-8 opacity-0'
+              }`}
           >
             {/* Close Button */}
             <button

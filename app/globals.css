@@ -41,6 +41,15 @@
   --font-body: var(--font-dm-sans);
 }
 
+/* Hide scrollbar track globally while keeping scroll functionality */
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-on-background);
